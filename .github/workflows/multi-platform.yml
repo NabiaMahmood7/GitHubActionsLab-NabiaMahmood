@@ -1,0 +1,51 @@
+name: Multi-Platform Testing
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ubuntu-job:
+    name: Ubuntu Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show OS info
+        run: uname -a
+
+      - name: Create test file on Ubuntu and display it
+        run: |
+          echo "This is Ubuntu" > os.txt
+          cat os.txt
+
+  windows-job:
+    name: Windows Job
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show OS info (Windows)
+        run: systeminfo
+
+      - name: Create test file on Windows and display it
+        run: |
+          echo This is Windows > os.txt
+          type os.txt
+
+  macos-job:
+    name: macOS Job
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show OS info (macOS)
+        run: uname -a
+
+      - name: Create test file on macOS and display it
+        run: |
+          echo "This is macOS" > os.txt
+          cat os.txt
